@@ -1,0 +1,37 @@
+cluster:
+  enabled: false
+
+minio:
+  enabled: false
+
+externalS3:
+  enabled: true
+  host: s3.us-east-1.amazonaws.com
+  port: "443"
+  accessKey: "${AWS_ACCESS_KEY_ID}"
+  secretKey: "${AWS_SECRET_ACCESS_KEY}"
+  useSSL: true
+  bucketName: "milvus-standalone-dev-bucket"
+  rootPath: "milvus"
+  cloudProvider: "aws"
+  region: "ap-south-1"
+
+standalone:
+  persistence:
+    enabled: true
+    size: 50Gi
+
+proxy:
+  service:
+    type: LoadBalancer
+    port: 19530
+
+attu:
+  enabled: true
+  name: attu
+  image:
+    repository: zilliz/attu
+    tag: v2.5
+  service:
+    type: LoadBalancer
+    port: 3000
